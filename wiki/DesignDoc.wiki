@@ -15,6 +15,8 @@ Workflows have sub-workflows. For example a Bridge tournament might have multipl
  * orange means that the user has a normal move, but is not primarily responsible for moving things along;
  * black means that the workflow is completed (such workflows are not normally visible).
 
+The probable web interface will be 4 frames: small head and foot frames, left frame is the tree of available workflows, right frame is the current workflow selected from the tree. Actually some workflows are quite small so it would be nice to pack multiple in the right frame so the user doesn't have to switch so much.
+
 = Roles =
 
 A workflow will have some necessary and some optional roles. The execution of that workflow engine might create new roles while it runs.
@@ -22,3 +24,5 @@ A workflow will have some necessary and some optional roles. The execution of th
 A user can take more than one role in a workflow. These will just appear as separate workflow entries in the UI.
 
 If a role name appears multiple times in a workflow then multiple people can fill the same role simultaneously. They will always see the same thing when connected at the same time. They will probably not do anything other than quickly triaging the activity to someone more specific. Trailing digits in a role name always represent an array of roles that are distinct but behave identically. They will be passed to the server plugin as a role array.
+ 
+ 

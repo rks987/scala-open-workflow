@@ -1,0 +1,24 @@
+SOW design doc
+
+= Introduction =
+
+SOW is not a workflow system, just a UI for workflow systems. The actual workflow systems are plugins, and can be general or quite specific.
+
+The thing SOW is trying to avoid is where the poor user is multitasking (which is all the time these days for most people) and he has to keep looking at the various things he is doing to see if there is anything new there, and in particular if it is "his turn to move".
+
+= What the user sees =
+
+Workflows have sub-workflows. For example a Bridge tournament might have multiple sessions; a session might have multiple deals. Users see a tree of workflows which can be opened up to show subworkflows. A workflow is colour coded (perhaps with a large dot). Workflow plugins are expected to follow standards for this colour coding. In particular: 
+
+ * red means that the user has no normal move to make (though they might be able to make meta moves like resigning the game, or killing the workflow if they own it);
+ * green means that the user needs to move to advance that workflow;
+ * orange means that the user has a normal move, but is not primarily responsible for moving things along;
+ * black means that the workflow is completed (such workflows are not normally visible).
+
+= Roles =
+
+A workflow will have some necessary and some optional roles. The execution of that workflow engine might create new roles while it runs.
+
+A user can take more than one role in a workflow. These will just appear as separate workflow entries in the UI.
+
+If a role name appears multiple times in a workflow then multiple people can fill the same role simultaneously. They will always see the same thing when connected at the same time. They will probably not do anything other than quickly triaging the activity to someone more specific. Trailing digits in a role name always represent an array of roles that are distinct but behave identically. They will be passed to the server plugin as a role array.

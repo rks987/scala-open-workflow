@@ -24,5 +24,14 @@ A workflow will have some necessary and some optional roles. The execution of th
 A user can take more than one role in a workflow. These will just appear as separate workflow entries in the UI.
 
 If a role name appears multiple times in a workflow then multiple people can fill the same role simultaneously. They will always see the same thing when connected at the same time. They will probably not do anything other than quickly triaging the activity to someone more specific. Trailing digits in a role name always represent an array of roles that are distinct but behave identically. They will be passed to the server plugin as a role array.
+
+= Joining a workflow =
+
+the owner of the workflow, or delegated code, has to decide who will fill what roles. The people have to agree. These things can be in either order. The people indicate willingness to be in a role by visiting a URL and perhaps filling in some extra information there. Also commonly this will just get you into a preliminary short lived workflow that will get you into the real thing.
+
+For example to join a Bridge tournament you might go to the web page for the tournament. However typically you can only join if your nominated partner also joins. This is a typical job for a workflow: you need to cooperate but don't want to require both partners to enter the competition simultaneously. So actually you just join the "enroll" workflow. You fill in the form. Your workflow goes "red". When your partner joins the enroll workflow and fills in the form as well (in a compatible way) then that workflow goes black and you join the tournament workflow - initially red until the tournament starts.
+
+For more private workflows the invitation will arrive by e-mail or in the top level meta workflow. If the inviter knows the invitees real e-mail address then they can send directly, and this works even if the invitee isn't yet enrolled in the SOW server. If they only know the users alias on the SOW server then the send will create a workflow item for the recipient if the recipients access control permits it.
  
+= Example workflows =
  

@@ -6,6 +6,8 @@ SOW is not a workflow system, just a UI for workflow systems. The actual workflo
 
 The thing SOW is trying to avoid is where the poor user is multitasking (which is all the time these days for most people) and he has to keep looking at the various things he is doing to see if there is anything new there, and in particular if it is "his turn to move".
 
+Calendar, Email, rss readers, IM, phone are all natural things to fit into the SOW context. However that will require the user to run their own server which will also allow the user to combine access to multiple servers through one UI. That will be good but is not an immediate aim. A slightly different but related future aim will allow servers to talk to each other so that a user can login to one server and join workflows on other computers with those credentials (the user id will be localname@servername). The immediate aim is a single server targetting workflows involving multiple users.
+
 = What the user sees =
 
 Workflows have sub-workflows. For example a Bridge tournament might have multiple sessions; a session might have multiple deals. Users see a tree of workflows which can be opened up to show subworkflows. A workflow is colour coded (perhaps with a large dot). Workflow plugins are expected to follow standards for this colour coding. In particular: 
@@ -41,4 +43,4 @@ Each SOW server will have a meta workflow that every member belongs to. This all
 
 Another standard workflow will be a Folder. This is just a way for users to collect workflows together and organize them. The folder will be green if any subworkflow is green. It will be red if all subfolders are red. Other colouring is more subtle?
 
-Calendar, Email, rss readers, IM, phone are all natural things to fit into the SOW context.
+ 

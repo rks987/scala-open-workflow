@@ -43,4 +43,16 @@ Each SOW server will have a meta workflow that every member belongs to. This all
 
 Another standard workflow will be a Folder. This is just a way for users to collect workflows together and organize them. The folder will be green if any subworkflow is green. It will be red if all subfolders are red. Other colouring is more subtle?
 
+
+== Bridge Bidding Practice ==
+
+This is to allow two Bridge partners to practice bidding. It reveals a number of relevant issues.
+
+There are two essential roles West and East [can be the same person for some purposes, but nothing changes in that case], and an optional role Coach. If there is a Coach then she will just create the practice Workflows, and the partners must have already agreed to that. In the more common case one partner will invite the other to join a BBP-Setup workflow in which the players will agree on various technical aspects of the practice: number of deals, automated competitive bidding, restrictions on hands. When one player agrees to what the other proposes then it will create a workflow for the set, and separate workflows for each deal.
+
+The workflows for the deals will be green when it is that partners turn and red when it is the other partners. Whether green or red partners can add comments about any bid. During the deal each player only sees their own hand and their own comments. When bidding is completed (or the workflow is prematurely concluded by either player) then the workflow will go grey and both partners can then see both hands and all comments and can add more comments. When all deals have gone grey then the workflow from the set will change to grey and will allow participants to obtain a printable record of the deals with bids and comments. The set workflow goes black when all participants indicate they have finished with it, at which point the deal workflows also go black.
+
+Because the user interface for the set workflow provides a combined scrollable interface to all the current green deals.
+
+When there is a Coach she has the option of being the provider of opposition bidding. In that case deal workflows will go green when it is the opposition's turn to bid. The coach will see both hands and all comments during the auction and deals will go orange when this information has changed since she last looked.
  

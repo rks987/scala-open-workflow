@@ -8,6 +8,8 @@ The thing SOW is trying to avoid is where the poor user is multitasking (which i
 
 Calendar, Email, rss readers, IM, phone are all natural things to fit into the SOW context. However that will require the user to run their own server which will also allow the user to combine access to multiple servers through one UI. That will be good but is not an immediate aim. A slightly different but related future aim will allow servers to talk to each other so that a user can login to one server and join workflows on other computers with those credentials (the user id will be localname@servername). The immediate aim is a single server targetting workflows involving multiple users.
 
+Of course a sow is a female pig, and the logo is going to be a sow with a litter sucking.
+
 = What the user sees =
 
 Workflows have sub-workflows. For example a Bridge tournament might have multiple sessions; a session might have multiple deals. Users see a tree of workflows which can be opened up to show subworkflows. A workflow is colour coded (perhaps with a large dot). Workflow plugins are expected to follow standards for this colour coding. In particular: 
@@ -65,3 +67,4 @@ In the left frame is a tree. Entries are workflows, not just leaves. There is a 
 When a user logs in then it sends the top level workflows, which will perhaps be just the meta workflow and some folders. The server doesn't know which workflows are visible. It just keeps feeding info in the comet stream about changes to any of the workflows that have ever been looked at in that session. Maybe need a way for user to reduce bandwidth use by indicating a lack of interest in some workflows, or maybe this will be automatic for workflows not viewed for some period. Or maybe only keep continuous info for workflows whose tree entry is visible (all ancestors open) in the tree -- requires a send when tree nodes are expanded/compacted.
 
 In the server each workflow is an actor (created from the db when someone connects to it and it doesn't currently have an actor). Every move by one of the roles causes the workflow to update the state and also decide which of the roles needs to get change information. If those roles have current instantiation then it sends them a message and they use comet to update the UI. Each role in a workflow has a visible-state structure. The update to the workflows state generates new visible-state for each role and these are compared to previous visible-state. State changes also go up to parent workflows which are likely to destribute changes also. So actors representing active users should wait very briefly before sending a message to the browser to collect other cascaded changes to send at the same time.
+ 

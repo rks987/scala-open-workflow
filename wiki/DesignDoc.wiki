@@ -56,61 +56,10 @@ Because the user interface for the set workflow provides a combined scrollable i
 
 When there is a Coach she has the option of being the provider of opposition bidding. In that case deal workflows will go green when it is the opposition's turn to bid. The coach will see both hands and all comments during the auction and deals will go orange when this information has changed since she last looked.
 
-systems are plugins, and can be general or quite specific.
-
-The thing SOW is trying to avoid is where the poor user is multitasking (which is all the time these days for most people) and he has to keep looking at the various things he is doing to see if there is anything new there, and in particular if it is "his turn to move".
-
-Calendar, Email, rss readers, IM, phone are all natural things to fit into the SOW context. However that will require the user to run their own server which will also allow the user to combine access to multiple servers through one UI. That will be good but is not an immediate aim. A slightly different but related future aim will allow servers to talk to each other so that a user can login to one server and join workflows on other computers with those credentials (the user id will be localname@servername). The immediate aim is a single server targetting workflows involving multiple users.
-
-= What the user sees =
-
-Workflows have sub-workflows. For example a Bridge tournament might have multiple sessions; a session might have multiple deals. Users see a tree of workflows which can be opened up to show subworkflows. A workflow is colour coded (perhaps with a large dot). Workflow plugins are expected to follow standards for this colour coding. In particular: 
-
- * red means that the user has no normal move to make (though they might be able to make meta moves like resigning the game, or killing the workflow if they own it);
- * green means that the user needs to move to advance that workflow;
- * orange means that the user has a normal move, but is not primarily responsible for moving things along;
- * black means that the workflow is completed (such workflows are not normally visible).
-
-The probable web interface will be 4 frames: small head and foot frames, left frame is the tree of available workflows, right frame is the current workflow selected from the tree. Actually some workflows are quite small so it would be nice to pack multiple in the right frame so the user doesn't have to switch so much.
-
-Audio responses are also a sensible optional feature when status changes in important workflows.
-
-= Roles =
-
-A workflow will have some necessary and some optional roles. The execution of that workflow engine might create new roles while it runs.
-
-A user can take more than one role in a workflow. These will just appear as separate workflow entries in the UI.
-
-If a role name appears multiple times in a workflow then multiple people can fill the same role simultaneously. They will always see the same thing when connected at the same time. They will probably not do anything other than quickly triaging the activity to someone more specific. Trailing digits in a role name always represent an array of roles that are distinct but behave identically. They will be passed to the server plugin as a role array.
-
-= Joining a workflow =
-
-the owner of the workflow, or delegated code, has to decide who will fill what roles. The people have to agree. These things can be in either order. The people indicate willingness to be in a role by visiting a URL and perhaps filling in some extra information there. Also commonly this will just get you into a preliminary short lived workflow that will get you into the real thing.
-
-For example to join a Bridge tournament you might go to the web page for the tournament. However typically you can only join if your nominated partner also joins. This is a typical job for a workflow: you need to cooperate but don't want to require both partners to enter the competition simultaneously. So actually you just join the "enroll" workflow. You fill in the form. Your workflow goes "red". When your partner joins the enroll workflow and fills in the form as well (in a compatible way) then that workflow goes black and you join the tournament workflow - initially red until the tournament starts.
-
-For more private workflows the invitation will arrive by e-mail or in the top level meta workflow. If the inviter knows the invitees real e-mail address then they can send directly, and this works even if the invitee isn't yet enrolled in the SOW server. If they only know the users alias on the SOW server then the send will create a workflow item for the recipient if the recipients access control permits it.
- 
-= Standard and Example workflows =
- 
-Each SOW server will have a meta workflow that every member belongs to. This allows members to start new workflows and to make and accept invitations to create workflows.
-
-Another standard workflow will be a Folder. This is just a way for users to collect workflows together and organize them. The folder will be green if any subworkflow is green. It will be red if all subfolders are red. Other colouring is more subtle?
-
-== Bridge Bidding Practice ==
-
-This is to allow two Bridge partners to practice bidding. It reveals a number of relevant issues.
-
-There are two essential roles West and East [can be the same person for some purposes, but nothing changes in that case], and an optional role Coach. If there is a Coach then she will just create the practice Workflows, and the partners must have already agreed to that. In the more common case one partner will invite the other to join a BBP-Setup workflow in which the players will agree on various technical aspects of the practice: number of deals, automated competitive bidding, restrictions on hands. When one player agrees to what the other proposes then it will create a workflow for the set, and separate workflows for each deal.
-
-The workflows for the deals will be green when it is that partners turn and red when it is the other partners. Whether green or red partners can add comments about any bid. During the deal each player only sees their own hand and their own comments. When bidding is completed (or the workflow is prematurely concluded by either player) then the workflow will go grey and both partners can then see both hands and all comments and can add more comments. When all deals have gone grey then the workflow from the set will change to grey and will allow participants to obtain a printable record of the deals with bids and comments. The set workflow goes black when all participants indicate they have finished with it, at which point the deal workflows also go black.
-
-Because the user interface for the set workflow provides a combined scrollable interface to all the current green deals.
-
-When there is a Coach she has the option of being the provider of opposition bidding. In that case deal workflows will go green when it is the opposition's turn to bid. The coach will see both hands and all comments during the auction and deals will go orange when this information has changed since she last looked.
-
 = Implementation Issues =
 
 My previous [non-comet, not-usable] version was in erlang and used a central mnesia db which was wonderfully easy to use: store any structure, just write the code and the system will keep retrying it till there are no locking problems. I wonder what the scala alternative is?
 
-In the left frame is a tree. Entries are workflows, not just leaves. There is a +/- to open them (if they have babies). Clicking on them brings that workflow up in the right frame (but doesn't change the left frame). Hover should show more info. Going to a workflow doesn't involve a server operation except the first time it is accessed in a session. 
+In the left frame is a tree. Entries are workflows, not just leaves. There is a +/- to open them (if they have babies). Clicking on them brings that workflow up in the right frame (but doesn't change the left frame). Hover should show more info. Going to a workflow doesn't involve a server operation except the first time it is accessed in a session.
+
+When a user logs in then it sends the top level workflows, which will perhaps be just the meta workflow and some folders. The server doesn't know which workflows are visible. It just keeps feeding info in the comet stream about changes to any of the workflows that have ever been looked at in that session. Maybe need a way for user to reduce bandwidth use by indicating a lack of interest in some workflows, or maybe this will be automatic for workflows not viewed for some period. Or maybe only keep continuous info for workflows whose tree entry is visible (all ancestors open) in the tree -- requires a send when tree nodes are expanded/compacted.

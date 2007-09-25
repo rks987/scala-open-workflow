@@ -60,7 +60,7 @@ When there is a Coach she has the option of being the provider of opposition bid
 
 = Implementation Issues =
 
-My previous [non-comet, not-usable] version was in erlang and used a central mnesia db which was wonderfully easy to use: store any structure, just write the code and the system will keep retrying it till there are no locking problems. I wonder what the scala alternative is? [I've now had a look at using SQL (derby). It can do the job but it will be horrible. Also looking at hibernate.]
+My previous [non-comet, not-usable] version was in erlang and used a central mnesia db which was wonderfully easy to use: store any structure, just write the code and the system will keep retrying it till there are no locking problems. I wonder what the scala alternative is? [I've now had a look at using SQL (derby). Maybe combined with ScalaDBC it won't be too bad.]
 
 In the left frame is a tree. Entries are workflows, not just leaves. There is a +/- to open them (if they have babies). Clicking on them brings that workflow up in the right frame (but doesn't change the left frame). Hover should show more info. Going to a workflow doesn't involve a server operation except the first time it is accessed in a session.
 
